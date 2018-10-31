@@ -10,7 +10,7 @@
 
 """This module exports the Ghdl plugin class."""
 
-from SublimeLinter.lint import Linter
+from SublimeLinter.lint import Linter, util
 
 
 class Ghdl(Linter):
@@ -18,10 +18,12 @@ class Ghdl(Linter):
     """Provides an interface to ghdl."""
 
     syntax = 'vhdl'
-    cmd = 'ghdl -a @'
+    cmd = 'ghdl -a $file'
     version_re = r'GHDL (?P<version>\d+\.\d+)'
     version_requirement = '>= 0.31'
     tempfile_suffix = 'vhd'
+
+    error_stream = util.STREAM_STDERR
 
     # Here is a sample ghdl error output:
     # ----8<------------
